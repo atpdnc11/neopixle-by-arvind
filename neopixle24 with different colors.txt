@@ -1,0 +1,54 @@
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN    6
+#define LED_COUNT  24
+
+Adafruit_NeoPixel leds = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  leds.begin();
+  leds.setBrightness(100);
+}
+
+void loop() {
+  // Chase each LED with a different color
+  for (int i = 0; i < LED_COUNT; i++) {
+    leds.setPixelColor(i, Wheel(i * 10));
+    leds.show();
+    delay(50);
+  }
+  
+  // Reverse the direction of the chase
+  for (int i = LED_COUNT - 1; i >= 0; i--) {
+    leds.setPixelColor(i, Wheel(i * 10));
+    leds.show();
+    delay(50);
+  }
+
+  // Blink even number of LEDs for 1 second
+  for (int i = 0; i < LED_COUNT; i+=2) {
+    leds.setPixelColor(i, 0x000000);
+  }
+  leds.show();
+  delay(1000);
+
+  // Blink odd number of LEDs for 1 second
+  for (int i = 1; i < LED_COUNT; i+=2) {
+    leds.setPixelColor(i, 0x000000);
+  }
+  leds.show();
+  delay(1000);
+}
+
+uint32_t Wheel(byte WheelPos) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
+    return leds.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  }
+  if(WheelPos < 170) {
+    WheelPos -= 85;
+    return leds.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  }
+  WheelPos -= 170;
+  return leds.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+}

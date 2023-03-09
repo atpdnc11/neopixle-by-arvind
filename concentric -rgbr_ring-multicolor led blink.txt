@@ -1,0 +1,117 @@
+#include <Adafruit_NeoPixel.h>
+
+// Pin number for the NeoPixel strip
+#define PIN 6
+
+// Number of NeoPixels in the strip
+#define NUMPIXELS 24
+
+// Define the NeoPixel object
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  // Start the NeoPixel strip
+  strip.begin();
+  strip.show();
+}
+
+void loop() {
+  // Red color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 255, 0, 0);
+  }
+  strip.show();
+  delay(1000);
+  
+  // Orange color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 255, 165, 0);
+  }
+  strip.show();
+  delay(1000);
+  
+  // Yellow color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 255, 255, 0);
+  }
+  strip.show();
+  delay(1000);
+  
+  // Green color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 0, 255, 0);
+  }
+  strip.show();
+  delay(1000);
+  
+  // Blue color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 0, 0, 255);
+  }
+  strip.show();
+  delay(1000);
+  
+  // Indigo color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 75, 0, 130);
+  }
+  strip.show();
+  delay(1000);
+  
+  // Violet color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 238, 130, 238);
+  }
+  strip.show();
+  delay(1000);
+
+
+
+
+// Orange color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 55, 165, 0);
+  }
+  strip.show();
+  delay(1000);
+  
+  // kimaya color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 255, 55, 0);
+  }
+  strip.show();
+  delay(1000);
+  
+  // rushil color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 105, 55, 110);
+  }
+  strip.show();
+  delay(1000);
+  
+  // himani color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 80, 120, 55);
+  }
+  strip.show();
+  delay(1000);
+  
+  // keshav color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 75, 145, 130);
+  }
+  strip.show();
+  delay(1000);
+  
+  // arvind color
+  for (int i = 0; i < NUMPIXELS; i++) {
+    strip.setPixelColor(i, 28, 13, 208);
+  }
+  strip.show();
+  delay(1000);
+
+
+
+
+
+}

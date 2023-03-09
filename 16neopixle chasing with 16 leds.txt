@@ -1,0 +1,86 @@
+/******************************************************************************
+  for neopixle with rgb led 16 chase led clock wise one by one
+ using diiferent 16 colors and then reverse the direction
+  anticlockwise,then altrnatly chase the leds 
+ clock wise and then anticlockwise
+
+
+ In this code, we first define the pin number and the number of LEDs 
+ in the Neopixel ring. Then, in the setup() function,
+  we initialize the Neopixel object.
+
+We define an array of 16 colors to use for the LEDs, and then
+ in the loop() function, we implement the desired behavior in several for-loops.
+
+First, we loop through all the LEDs and set the color of each
+ LED to a different color from the color array, using the modulo 
+ operator to wrap around if we go beyond the end of the array.
+  We then wait for a short delay to display the effect.
+
+Next, we reverse the direction by looping through the LEDs 
+in reverse order and using the same color array to set the color of each LED.
+
+After that, we alternate between clockwise and 
+counter-clockwise chase, using two nested for-loops to set 
+the color of each LED based on its position and the direction of the chase.
+
+Finally, we repeat the loop indefinitely.
+
+Note that you can adjust the colors in the colors 
+array to achieve different effects, and you can 
+adjust the delay times in the code to change the speed of the animation. Additionally, make sure to connect the Neopixel ring to the Arduino Nano correctly, following the wiring diagram provided by the manufacturer. In this example, we assumed that the data pin is connected to pin 6 of the Arduino Nano.
+
+
+
+
+
+
+******************************************************************************/
+
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN 6
+#define LED_COUNT 16
+
+Adafruit_NeoPixel leds = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+// Define an array of 16 colors to use for the LEDs
+uint32_t colors[] = {
+  0xFF0000, 0xFF8000, 0xFFFF00, 0x80FF00,
+  0x00FF00, 0x00FF80, 0x00FFFF, 0x0080FF,
+  0x0000FF, 0x8000FF, 0xFF00FF, 0xFF0080,
+  0x000000, 0x808080, 0xFFFFFF, 0xFFA500
+};
+
+void setup() {
+  leds.begin();
+}
+
+void loop() {
+  // Chase LEDs clockwise with different colors
+  for (int i = 0; i < LED_COUNT; i++) {
+    leds.setPixelColor(i, colors[i % 16]);
+    leds.show();
+    delay(500);
+  }
+  
+  // Reverse the direction and chase counter-clockwise
+  for (int i = LED_COUNT - 1; i >= 0; i--) {
+    leds.setPixelColor(i, colors[i % 16]);
+    leds.show();
+    delay(500);
+  }
+
+  // Alternate between clockwise and counter-clockwise chase
+  for (int i = 0; i < LED_COUNT; i++) {
+    // Chase clockwise
+    leds.setPixelColor(i, colors[i % 16]);
+    leds.show();
+    delay(200);
+
+    // Chase counter-clockwise
+    leds.setPixelColor(LED_COUNT - 1 - i, colors[(i + 8) % 16]);
+    leds.show();
+    delay(200);
+  }
+}

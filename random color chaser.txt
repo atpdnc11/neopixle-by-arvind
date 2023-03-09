@@ -1,0 +1,52 @@
+/******************************************************************************
+write a c plus code for arduino  to  randomly chase
+ rgb led of neopixle having 24 led 
+
+Explanation:
+
+First, we include the "Adafruit_NeoPixel" library that allows us to 
+control the RGB LED of the Neopixel.
+We define the pin where the LED strip is connected and the number of LEDs
+ in the strip.
+In the setup function, we initialize the strip object and show
+ the initial state of the strip.
+In the loop function, we iterate through each LED in the strip 
+and generate a random color for it by choosing random values for 
+red, green, and blue channels.
+Then, we set the color of the current LED using
+ the "setPixelColor" function and show the updated 
+ strip by calling "show" function.
+Finally, we introduce a delay of 50 milliseconds to slow down the animation.
+Note: You can adjust the delay time and the range of random
+ values for RGB channels to change the speed and color of the animation.
+
+by arvind patil 9 march 2023
+
+
+
+
+***************************************************************************/
+
+
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN     6
+#define LED_COUNT   24
+
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  strip.begin();
+  strip.show();
+}
+
+void loop() {
+  for(int i = 0; i < LED_COUNT; i++) {
+    int r = random(0, 255);
+    int g = random(0, 255);
+    int b = random(0, 255);
+    strip.setPixelColor(i, strip.Color(r, g, b));
+    strip.show();
+    delay(500);
+  }
+}
